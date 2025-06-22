@@ -4,37 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
-  <title>SmartEarn - Blog | Apps | News</title>
+  <title>SmartZone | Blog • Earn • News</title>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script defer src="script.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      background: #f2f2f2;
       color: #222;
     }
     header {
-      background: linear-gradient(to right, #667eea, #764ba2);
+      background: linear-gradient(to right, #4facfe, #00f2fe);
       color: white;
-      padding: 1rem 2rem;
+      padding: 2rem;
       text-align: center;
     }
     nav {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      background: #fff;
-      padding: 1rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 10;
     }
     nav a {
-      text-decoration: none;
       color: #333;
       font-weight: bold;
+      text-decoration: none;
     }
     section {
       padding: 2rem;
@@ -42,102 +41,78 @@
       margin: auto;
     }
     h2 {
-      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 1rem;
     }
     .card {
       background: white;
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     .card img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-top: 1rem;
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+    .icon {
+      width: 24px;
+      vertical-align: middle;
     }
     footer {
       text-align: center;
+      font-size: 0.8rem;
       padding: 1rem;
-      background: #eee;
-      font-size: 0.9rem;
+      background: #ddd;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>SmartEarn</h1>
-    <p>Your trusted source for blogs, earning apps, and latest news</p>
+    <h1>🚀 SmartZone</h1>
+    <p>Your hub for earning tips, blogs, and updates!</p>
   </header>
 
   <nav>
-    <a href="#blog">Blog</a>
-    <a href="#refer">Refer & Earn</a>
-    <a href="#news">News</a>
+    <a href="#blog">📝 Blog</a>
+    <a href="#refer">💸 Refer</a>
+    <a href="#news">📰 News</a>
   </nav>
 
-  <!-- Blog Section -->
   <section id="blog" data-aos="fade-up">
-    <h2>📘 Latest Blog</h2>
-    <div class="card">
-      <h3>Top 5 Earning Apps for Students</h3>
-      <p>Explore the most trusted apps to earn money as a student, with referral bonuses and payout proof.</p>
-      <a href="#">Read More</a>
-    </div>
+    <h2><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="icon" /> Latest Blogs</h2>
+    <div id="blog-container"></div>
   </section>
 
-  <!-- Refer Section -->
   <section id="refer" data-aos="fade-up">
-    <h2>💸 Refer & Earn</h2>
+    <h2><img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" class="icon" /> Refer & Earn</h2>
     <div class="card">
-      <h3>WinZO - Play & Earn</h3>
-      <p>Earn ₹50 instantly using our referral code when you sign up and play games on WinZO.</p>
-      <p><strong>Referral Link:</strong> <a href="https://winzo.page.link/YOUR-CODE">winzo.page.link/YOUR-CODE</a></p>
-      <img src="https://cdn.winzo.in/assets/images/winzo-app.png" alt="Winzo App">
+      <h3>WinZO App</h3>
+      <p>Play & earn money. Get ₹50 bonus on signup.</p>
+      <a href="https://winzo.page.link/YOUR-CODE">Join with Code</a>
+      <img src="https://cdn.winzo.in/assets/images/winzo-app.png" />
     </div>
-
     <div class="card">
-      <h3>Honeygain - Earn Passive Income</h3>
-      <p>Install the app and earn money just by keeping it active. $5 bonus on signup!</p>
-      <p><strong>Referral Link:</strong> <a href="https://r.honeygain.me/YOUR-CODE">r.honeygain.me/YOUR-CODE</a></p>
-      <img src="https://honeygain.com/images/main_how-it-works.png" alt="Honeygain">
+      <h3>Honeygain</h3>
+      <p>Share your internet and earn passively. $5 bonus on signup!</p>
+      <a href="https://r.honeygain.me/YOUR-CODE">Join Honeygain</a>
+      <img src="https://honeygain.com/images/main_how-it-works.png" />
     </div>
   </section>
 
-  <!-- News Section -->
   <section id="news" data-aos="fade-up">
-    <h2>📰 Latest News</h2>
-    <div class="card">
-      <h3>CET 2025 Preparation Guide Released</h3>
-      <p>The official preparation guide and timetable for CET 2025 is out now. Download the PDF and start preparing early.</p>
-      <img src="https://www.cetcell.mahacet.org/Images/logo.jpg" alt="CET News">
-    </div>
-
-    <div class="card">
-      <h3>New Earning App Launched in India</h3>
-      <p>A new app promises to pay students ₹100 daily for watching short educational videos. Learn how to sign up.</p>
-      <img src="https://source.unsplash.com/400x200/?money,app" alt="Earning App News">
-    </div>
+    <h2><img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" class="icon" /> News & Updates</h2>
+    <div id="news-container"></div>
   </section>
 
   <footer>
-    &copy; 2025 SmartEarn. All rights reserved.
+    &copy; 2025 SmartZone. All rights reserved.
   </footer>
 
-  <!-- Scroll animation -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
-
-  <!-- AdSense Auto Ads Code Placeholder -->
-  <!-- Replace with your actual code -->
-  <!--
-  <script data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  -->
 </body>
 </html>
