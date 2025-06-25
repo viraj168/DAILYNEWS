@@ -1,51 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head as index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News | TechPulse</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('../data/news.json')
-                .then(response => response.json())
-                .then(news => {
-                    const container = document.getElementById('news-container');
-                    let html = '';
-                    
-                    news.forEach(item => {
-                        html += `
-                        <div class="news-grid-card">
-                            <div class="news-grid-img" style="background-image: url('${item.image}')"></div>
-                            <div class="news-grid-content">
-                                <div class="news-grid-meta">
-                                    <span><i class="far fa-calendar"></i> ${item.date}</span>
-                                </div>
-                                <h3>${item.title}</h3>
-                                <p>${item.excerpt}</p>
-                                <a href="news/${item.id}.html" class="btn btn-outline">Read Full Story</a>
-                            </div>
-                        </div>`;
-                    });
-                    
-                    container.innerHTML = html;
-                });
-        });
-    </script>
+    <!-- COPY ALL STYLES FROM YOUR INDEX.HTML HERE -->
+    <style>
+        /* PASTE ALL YOUR CSS HERE */
+    </style>
 </head>
 <body>
-    <!-- Same header as index.html -->
-    
+    <!-- Header (copy from index.html) -->
+    <header>
+        <!-- same header as index.html -->
+    </header>
+
+    <!-- News Grid Page -->
     <section class="news-grid-page">
         <div class="container">
             <div class="news-grid-header">
-                <h2>All Tech News</h2>
-                <p>Latest updates from the tech world</p>
+                <h2>All Tech News & Updates</h2>
+                <p>Browse our complete archive of technology news articles</p>
             </div>
+            
             <div class="news-grid-container" id="news-container">
-                <!-- News loaded dynamically -->
+                <!-- News will be loaded here -->
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
     </section>
-    
-    <!-- Same footer as index.html -->
+
+    <!-- Footer (copy from index.html) -->
+    <footer>
+        <!-- same footer as index.html -->
+    </footer>
+
+    <script>
+        // News data - you can move this to a separate JSON file later
+        const news = [
+            {
+                id: "ai-breakthrough",
+                title: "Global Tech Conference Announces Revolutionary AI Breakthrough",
+                date: "June 20, 2023",
+                excerpt: "Researchers unveil a new AI model that can process complex tasks with unprecedented efficiency.",
+                image: "https://images.unsplash.com/photo-1677442135722-5f8ea49cec8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+            },
+            {
+                id: "cybersecurity-regulations",
+                title: "New Cybersecurity Regulations Impact Tech Industry",
+                date: "June 18, 2023",
+                excerpt: "Governments worldwide implement stricter cybersecurity requirements for digital services.",
+                image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            // Add more news items here
+        ];
+
+        // Render news items
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('news-container');
+            let html = '';
+            
+            news.forEach(item => {
+                html += `
+                <div class="news-grid-card">
+                    <div class="news-grid-img" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${item.image}')"></div>
+                    <div class="news-grid-content">
+                        <div class="news-grid-meta">
+                            <span><i class="far fa-calendar"></i> ${item.date}</span>
+                        </div>
+                        <h3>${item.title}</h3>
+                        <p>${item.excerpt}</p>
+                        <a href="news/${item.id}.html" class="btn btn-outline">Read Full Story</a>
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+        });
+    </script>
 </body>
 </html>
