@@ -516,6 +516,58 @@
             resize: vertical;
         }
 
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .admin-toggle {
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            border-radius: 8px 0 0 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+        }
+
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -690,6 +742,22 @@
             .hero-image {
                 margin-top: 30px;
             }
+
+            .admin-panel {
+                top: auto;
+                bottom: 0;
+                right: 0;
+                transform: none;
+                width: 100%;
+                border-radius: 8px 8px 0 0;
+            }
+            
+            .admin-toggle {
+                top: -40px;
+                right: 20px;
+                transform: none;
+                border-radius: 8px 8px 0 0;
+            }
         }
 
         @media (max-width: 768px) {
@@ -726,6 +794,26 @@
     </style>
 </head>
 <body>
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-toggle" id="adminToggle">
+            <i class="fas fa-plus"></i> Add News
+        </div>
+        <div class="admin-form">
+            <h3>Add New Article</h3>
+            <input type="text" id="newsTitle" placeholder="Title">
+            <textarea id="newsContent" placeholder="Content"></textarea>
+            <input type="text" id="newsImage" placeholder="Image URL">
+            <select id="newsCategory">
+                <option value="Technology">Technology</option>
+                <option value="Business">Business</option>
+                <option value="Science">Science</option>
+                <option value="Health">Health</option>
+            </select>
+            <button id="addNewsBtn">Publish Article</button>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -815,49 +903,8 @@
                 <h2>Latest Tech News</h2>
                 <p>Stay informed with the most recent developments in the technology world</p>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600" alt="AI Technology">
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-category">Artificial Intelligence</span>
-                            <span>June 25, 2025</span>
-                        </div>
-                        <h3>New AI Model Breaks Performance Records</h3>
-                        <p>Researchers unveil a groundbreaking AI model that outperforms previous benchmarks in natural language understanding...</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600" alt="Smartphone">
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-category">Mobile Tech</span>
-                            <span>June 23, 2025</span>
-                        </div>
-                        <h3>Foldable Smartphones Reach Price Parity</h3>
-                        <p>New manufacturing techniques bring foldable devices to mainstream price points, signaling a major shift in the market...</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600" alt="Quantum Computing">
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-category">Quantum Computing</span>
-                            <span>June 20, 2025</span>
-                        </div>
-                        <h3>Quantum Computing Breakthrough Announced</h3>
-                        <p>Scientists achieve quantum supremacy with a new 256-qubit processor, opening doors to previously impossible calculations...</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
+            <div class="news-grid" id="newsContainer">
+                <!-- News articles will be loaded dynamically -->
             </div>
             <div style="text-align: center; margin-top: 40px;">
                 <a href="#" class="btn">View All News</a>
@@ -905,10 +952,10 @@
                     </div>
                     
                     <div class="download-buttons">
-                        <a href="#" class="download-btn apple">
+                        <a href="#" class="btn" style="margin-right: 10px;">
                             <i class="fab fa-apple"></i> App Store
                         </a>
-                        <a href="#" class="download-btn android">
+                        <a href="#" class="btn btn-outline" style="background: transparent; color: white; border-color: white;">
                             <i class="fab fa-google-play"></i> Google Play
                         </a>
                     </div>
@@ -963,22 +1010,22 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="John Doe">
+                            <input type="text" id="name" placeholder="John Doe" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="john@example.com">
+                            <input type="email" id="email" placeholder="john@example.com" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="How can we help you?">
+                            <input type="text" id="subject" placeholder="How can we help you?" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" placeholder="Your message here..."></textarea>
+                            <textarea id="message" placeholder="Your message here..." required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -1044,9 +1091,9 @@
                 <div class="footer-column">
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter for weekly tech updates</p>
-                    <form>
+                    <form id="newsletterForm">
                         <div class="form-group">
-                            <input type="email" placeholder="Your email address">
+                            <input type="email" placeholder="Your email address" required>
                         </div>
                         <button type="submit" class="btn">Subscribe</button>
                     </form>
@@ -1059,27 +1106,84 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-        
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu after clicking
-                document.querySelector('.nav-links').classList.remove('active');
+        // News data - in a real application, this would come from a database
+        let newsArticles = [
+            {
+                id: 1,
+                title: "New AI Model Breaks Performance Records",
+                content: "Researchers unveil a groundbreaking AI model that outperforms previous benchmarks in natural language understanding...",
+                image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600",
+                category: "Artificial Intelligence",
+                date: "June 25, 2025"
+            },
+            {
+                id: 2,
+                title: "Foldable Smartphones Reach Price Parity",
+                content: "New manufacturing techniques bring foldable devices to mainstream price points, signaling a major shift in the market...",
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600",
+                category: "Mobile Tech",
+                date: "June 23, 2025"
+            },
+            {
+                id: 3,
+                title: "Quantum Computing Breakthrough Announced",
+                content: "Scientists achieve quantum supremacy with a new 256-qubit processor, opening doors to previously impossible calculations...",
+                image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600",
+                category: "Quantum Computing",
+                date: "June 20, 2025"
+            }
+        ];
+
+        // Function to render news articles
+        function renderNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            newsContainer.innerHTML = '';
+            
+            newsArticles.forEach(article => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card';
+                newsCard.innerHTML = `
+                    <div class="news-image">
+                        <img src="${article.image}" alt="${article.title}">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">${article.category}</span>
+                            <span>${article.date}</span>
+                        </div>
+                        <h3>${article.title}</h3>
+                        <p>${article.content}</p>
+                        <a href="#" class="btn btn-outline">Read More</a>
+                    </div>
+                `;
+                newsContainer.appendChild(newsCard);
             });
-        });
-        
-        // Animation on scroll
+        }
+
+        // Initialize news on page load
         document.addEventListener('DOMContentLoaded', function() {
+            renderNews();
+            
+            // Mobile Menu Toggle
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
+            
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking
+                    document.querySelector('.nav-links').classList.remove('active');
+                });
+            });
+            
+            // Animation on scroll
             const observerOptions = {
                 threshold: 0.1
             };
@@ -1095,13 +1199,70 @@
             document.querySelectorAll('.feature-card, .news-card').forEach(card => {
                 observer.observe(card);
             });
-        });
-        
-        // Form submission
-        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+            
+            // Newsletter submission
+            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            });
+            
+            // Admin panel toggle
+            document.getElementById('adminToggle').addEventListener('click', function() {
+                const adminPanel = document.getElementById('adminPanel');
+                adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Add news functionality
+            document.getElementById('addNewsBtn').addEventListener('click', function() {
+                const title = document.getElementById('newsTitle').value;
+                const content = document.getElementById('newsContent').value;
+                const image = document.getElementById('newsImage').value;
+                const category = document.getElementById('newsCategory').value;
+                
+                if (title && content) {
+                    // Generate current date
+                    const now = new Date();
+                    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    const date = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+                    
+                    // Create new article
+                    const newArticle = {
+                        id: newsArticles.length + 1,
+                        title: title,
+                        content: content,
+                        image: image || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600',
+                        category: category,
+                        date: date
+                    };
+                    
+                    // Add to beginning of array
+                    newsArticles.unshift(newArticle);
+                    
+                    // Re-render news
+                    renderNews();
+                    
+                    // Reset form
+                    document.getElementById('newsTitle').value = '';
+                    document.getElementById('newsContent').value = '';
+                    document.getElementById('newsImage').value = '';
+                    document.getElementById('newsCategory').value = 'Technology';
+                    
+                    alert('Article published successfully!');
+                    
+                    // Scroll to news section
+                    document.querySelector('#news').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('Please fill in at least the title and content.');
+                }
+            });
         });
     </script>
 </body>
