@@ -50,9 +50,27 @@
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
+        
+<!-- Move this entire section ABOVE the footer -->
+<section id="news" class="news">
+    <div class="container">
+        <div class="section-header">
+            <h2>Tech News & Updates</h2>
+            <p>Stay informed with the latest happenings in the technology world.</p>
+        </div>
+        <div class="news-grid">
+            <!-- news cards here -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="news.html" class="btn">View All News</a>
+        </div>
+    </div>
+</section>
 
+<!-- Footer comes AFTER the news section -->
+<footer id="contact">
+    <!-- footer content -->
+</footer>
         .navbar {
             display: flex;
             justify-content: space-between;
