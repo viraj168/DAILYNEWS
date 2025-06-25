@@ -1,0 +1,17 @@
+[
+    {
+        "id": "article1",
+        "title": "Global Tech Conference Announces Revolutionary AI Breakthrough",
+        "date": "June 20, 2023",
+        "excerpt": "Researchers unveil a new AI model that can process complex tasks...",
+        "image": "https://example.com/news1.jpg"
+    },
+    {
+        "id": "article2",
+        "title": "New Cybersecurity Regulations Impact Tech Industry",
+        "date": "June 18, 2023",
+        "excerpt": "Governments worldwide implement stricter cybersecurity requirements...",
+        "image": "https://example.com/news2.jpg"
+    },
+    // Add new entries here
+]
