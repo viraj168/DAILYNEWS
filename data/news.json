@@ -14,4 +14,10 @@
         "image": "https://example.com/news2.jpg"
     },
     // Add new entries here
-]
+]{
+    "id": "article3",
+    "title": "India's New Cybersecurity Bill Shakes Up Tech Sector in 2025",
+    "date": "may, 2025",
+    "excerpt": "Brief description...",
+    "image": "path/to/image.jpg"
+}
