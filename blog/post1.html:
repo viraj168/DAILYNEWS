@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title | TechPulse</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Reuse your header from index.html -->
+    <header>
+        <div class="container navbar">
+            <a href="../index.html" class="logo"><i class="fas fa-pulse"></i>TechPulse</a>
+            <ul class="nav-links">
+                <!-- Navigation links same as index.html -->
+            </ul>
+        </div>
+    </header>
+
+    <section class="news-article">
+        <div class="container">
+            <div class="article-container">
+                <div class="article-header">
+                    <h1>Your Blog Post Title</h1>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Date</span>
+                        <span><i class="far fa-user"></i> Author</span>
+                    </div>
+                </div>
+                
+                <div class="article-image" style="background-image: url('image-url.jpg');"></div>
+                
+                <div class="article-content">
+                    <!-- Your blog content here -->
+                    <p>Full content goes here...</p>
+                </div>
+                
+                <a href="../blog.html" class="back-to-news"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reuse your footer from index.html -->
+    <footer>
+        <!-- Footer content same as index.html -->
+    </footer>
+</body>
+</html>
